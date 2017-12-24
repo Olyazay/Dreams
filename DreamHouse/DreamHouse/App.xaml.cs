@@ -28,7 +28,7 @@ namespace DreamHouse
             Session.CurrentSession.IsUpdating = false;
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += Timer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0,2,0);
+            dispatcherTimer.Interval = new TimeSpan(50,0,0);
             dispatcherTimer.Start();
           //  GetUpdate();
         }

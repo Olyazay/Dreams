@@ -244,7 +244,6 @@ namespace DreamHouse.DataReader
                         }
                     }
                 }
-                ShopList.Add(new CategoryModel("КАРТА", ImageConverterToArray("Map.png"), null, null));
 
             }
 
