@@ -1,0 +1,41 @@
+﻿<Page x:Class="DreamHouse.Pages.AnnouncementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DreamHouse.Pages"
+      xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+      xmlns:convertors="clr-namespace:DreamHouse.Convertors"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="AnnouncementPage">
+    <!--<Page.DataContext>
+        <ViewModel:MainPageViewModel/>
+    </Page.DataContext>-->
+
+    <StackPanel Margin="100,0" MaxHeight="3840">
+        <!--Фотка и "назад"-->
+        <Grid Margin="0,264,0,0">
+            <Grid.Resources>
+                <convertors:ImageConverter x:Key="imageconvertor"></convertors:ImageConverter>
+            </Grid.Resources>
+            <Image Name="annonscr" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Source="{Binding source, Converter={StaticResource imageconvertor}}" Width="1960" MaxHeight="1500" Stretch="Uniform"/>
+            <Button VerticalAlignment="Bottom" Content="назад" Foreground="White" Height="76" Width="152" HorizontalAlignment="Left" Margin="46,42,0,50" Style="{StaticResource UnderlinedButtonStyle}"
+                    DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Command="NavigationCommands.BrowseBack"
+                    Background="White">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="1" ShadowDepth="0" BlurRadius="4"></DropShadowEffect>
+                </Button.Effect>
+            </Button>
+        </Grid>
+
+        <!--Название-->
+        <TextBlock Margin="0,65,0,0" Text="{Binding NameAnnons, UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" FontSize="80" FontFamily="../Fonts/Roboto/#Roboto" Foreground="#303030"/>
+
+        <!--Описание-->
+        <ScrollViewer Margin="0,90,0,0"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
+            <TextBlock FontSize="60" Foreground="#303030" FontFamily="../Fonts/Roboto/#Roboto" TextWrapping="Wrap" Text="{Binding BodyAnnons}"
+                   DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}"/>
+        </ScrollViewer>
+    </StackPanel>
+</Page>

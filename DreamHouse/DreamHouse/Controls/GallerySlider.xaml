@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="VremenaGoda.Controls.GallerySlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:VremenaGoda.Converters"
+             xmlns:convertors="clr-namespace:DreamHouse.Convertors"
+             mc:Ignorable="d"
+             ClipToBounds="True"
+             Name="ThisControl"
+             x:FieldModifier="private">
+    
+    <UserControl.Resources>
+
+        <Style x:Key="BlankButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <ContentPresenter Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <PathGeometry x:Key="PixelArrow" Figures="M43.999 13.999 L43.999 11.999 L45.999 11.999 L45.999 13.999 L43.999 13.999 ZM41.999 9.999 L43.999 9.999 L43.999 11.999 L41.999 11.999 L41.999 9.999 ZM39.999 7.999 L41.999 7.999 L41.999 9.999 L39.999 9.999 L39.999 7.999 ZM37.999 5.999 L39.999 5.999 L39.999 7.999 L37.999 7.999 L37.999 5.999 ZM35.999 3.999 L37.999 3.999 L37.999 5.999 L35.999 5.999 L35.999 3.999 ZM35.999 7.999 L33.999 7.999 L33.999 5.999 L35.999 5.999 L35.999 7.999 ZM35.999 11.999 L33.999 11.999 L33.999 9.999 L35.999 9.999 L35.999 11.999 ZM35.999 15.999 L33.999 15.999 L33.999 13.999 L35.999 13.999 L35.999 15.999 ZM35.999 19.999 L33.999 19.999 L33.999 17.999 L35.999 17.999 L35.999 19.999 ZM37.999 19.999 L37.999 21.999 L35.999 21.999 L35.999 19.999 L37.999 19.999 ZM39.999 17.999 L39.999 19.999 L37.999 19.999 L37.999 17.999 L39.999 17.999 ZM41.999 15.999 L41.999 17.999 L39.999 17.999 L39.999 15.999 L41.999 15.999 ZM39.999 11.999 L41.999 11.999 L41.999 13.999 L39.999 13.999 L39.999 11.999 ZM37.999 9.999 L39.999 9.999 L39.999 11.999 L37.999 11.999 L37.999 9.999 ZM37.999 13.999 L35.999 13.999 L35.999 11.999 L37.999 11.999 L37.999 13.999 ZM39.999 13.999 L39.999 15.999 L37.999 15.999 L37.999 13.999 L39.999 13.999 ZM37.999 17.999 L35.999 17.999 L35.999 15.999 L37.999 15.999 L37.999 17.999 ZM35.999 7.999 L37.999 7.999 L37.999 9.999 L35.999 9.999 L35.999 7.999 ZM43.999 13.999 L43.999 15.999 L41.999 15.999 L41.999 13.999 L43.999 13.999 ZM35.999 23.999 L33.999 23.999 L33.999 21.999 L35.999 21.999 L35.999 23.999 ZM31.999 25.999 L31.999 23.999 L33.999 23.999 L33.999 25.999 L31.999 25.999 ZM31.999 21.999 L31.999 19.999 L33.999 19.999 L33.999 21.999 L31.999 21.999 ZM31.999 17.999 L31.999 15.999 L33.999 15.999 L33.999 17.999 L31.999 17.999 ZM31.999 13.999 L31.999 11.999 L33.999 11.999 L33.999 13.999 L31.999 13.999 ZM31.999 9.999 L31.999 7.999 L33.999 7.999 L33.999 9.999 L31.999 9.999 ZM31.999 5.999 L31.999 3.999 L33.999 3.999 L33.999 5.999 L31.999 5.999 ZM33.999 1.999 L35.999 1.999 L35.999 3.999 L33.999 3.999 L33.999 1.999 ZM31.999 -0.001 L33.999 -0.001 L33.999 1.999 L31.999 1.999 L31.999 -0.001 ZM27.999 11.999 L29.999 11.999 L29.999 13.999 L27.999 13.999 L27.999 11.999 ZM23.999 11.999 L25.999 11.999 L25.999 13.999 L23.999 13.999 L23.999 11.999 ZM19.999 11.999 L21.999 11.999 L21.999 13.999 L19.999 13.999 L19.999 11.999 ZM15.999 11.999 L17.999 11.999 L17.999 13.999 L15.999 13.999 L15.999 11.999 ZM11.999 11.999 L14.000 11.999 L14.000 13.999 L11.999 13.999 L11.999 11.999 ZM7.999 11.999 L9.999 11.999 L9.999 13.999 L7.999 13.999 L7.999 11.999 ZM3.999 11.999 L5.999 11.999 L5.999 13.999 L3.999 13.999 L3.999 11.999 ZM-0.001 11.999 L1.999 11.999 L1.999 13.999 L-0.001 13.999 L-0.001 11.999 Z" FillRule="NonZero"/>
+        <converters:MultipleDoublesConverter x:Key="MultipleDoublesConverter"/>
+        <CollectionViewSource x:Key="CollectionSource"
+                              Source="{Binding Source, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
+        
+        <Style TargetType="Path">
+            <Setter Property="Margin" Value="0.64cm"/>
+            <Setter Property="Width" Value=".6cm"/>
+            <Setter Property="Height" Value="1.13cm"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+        </Style>
+        <Style TargetType="Button"
+               BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+        
+        <CubicEase x:Key="CubicEase" EasingMode="EaseInOut"/>
+        <Duration x:Key="Duration">0:0:0.5</Duration>
+        
+        <Storyboard x:Key="MoveToPositionStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             Duration="0"/>
+        </Storyboard>
+
+        <Storyboard x:Key="CancelMoveStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             To="0" 
+                             Duration="{StaticResource Duration}"
+                             DecelerationRatio="1"
+                             Completed="Move_OnCompleted"/>
+        </Storyboard>
+        
+        <Storyboard x:Key="OutMoveToNextStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             To="{Binding ActualWidth, ElementName=RootGrid, Converter={StaticResource MultipleDoublesConverter}, ConverterParameter=-0.5}"
+                             Duration="{StaticResource Duration}"
+                             AccelerationRatio="1"
+                             Completed="OutMoveToNextStoryboard_OnCompleted"/>
+        </Storyboard>
+        
+        <Storyboard x:Key="OutMoveToPrevStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             To="{Binding ActualWidth, ElementName=RootGrid, Converter={StaticResource MultipleDoublesConverter}, ConverterParameter=0.5}"
+                             Duration="{StaticResource Duration}"
+                             AccelerationRatio="1"
+                             Completed="OutMoveToPrevStoryboard_OnCompleted"/>
+        </Storyboard>
+
+        <Storyboard x:Key="InMoveToNextStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="{Binding ActualWidth, ElementName=RootGrid, Converter={StaticResource MultipleDoublesConverter}, ConverterParameter=0.5}"
+                             To="0"
+                             Duration="{StaticResource Duration}"
+                             DecelerationRatio="1"
+                             Completed="Move_OnCompleted"/>
+        </Storyboard>
+
+        <Storyboard x:Key="InMoveToPrevStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TranslateTransform"
+                             Storyboard.TargetProperty="X"
+                             From="{Binding ActualWidth, ElementName=RootGrid, Converter={StaticResource MultipleDoublesConverter}, ConverterParameter=-0.5}"
+                             To="0"
+                             Duration="{StaticResource Duration}"
+                             DecelerationRatio="1"
+                             Completed="Move_OnCompleted"/>
+        </Storyboard>
+
+    </UserControl.Resources>
+    
+    <Grid x:Name="RootGrid"
+          x:FieldModifier="private"
+          DataContext="{StaticResource CollectionSource}"
+          Background="Transparent"
+          Height="1350" 
+          Width="2000"
+          VerticalAlignment="Top"
+          ClipToBounds="True">
+        <Button Click="Button_Click" Background="White" 
+                VerticalContentAlignment="Stretch" Tag="{Binding Object}"
+                HorizontalContentAlignment="Stretch" Style="{StaticResource BlankButton}">
+            <Grid RenderTransformOrigin=".5,.5">
+                <Grid.Opacity>
+                    <MultiBinding>
+                        <MultiBinding.Converter>
+                            <converters:GallerySliderOpacityConverter/>
+                        </MultiBinding.Converter>
+                        <Binding Path="ActualWidth">
+                            <Binding.RelativeSource>
+                                <RelativeSource Mode="Self"/>
+                            </Binding.RelativeSource>
+                        </Binding>
+                        <Binding ElementName="TranslateTransform" Path="X"/>
+                    </MultiBinding>
+                </Grid.Opacity>
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="TranslateTransform"
+                                        x:FieldModifier="private"/>
+                </Grid.RenderTransform>
+
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <convertors:ImageConverter x:Key="imagetobyte"></convertors:ImageConverter>
+                    </StackPanel.Resources>
+                    <Grid Width="2000" Height="1200">
+                        <Image Stretch="Uniform" Source="{Binding Path=PhotoPath, IsAsync=True, Converter={StaticResource imagetobyte}}"></Image>
+                        <!--<Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="{Binding PhotoPath, IsAsync=True,Converter={StaticResource imagetobyte}}"></ImageBrush>
+                        </Button.Background>-->
+                    </Grid>
+                    <!--<Image Width="1900" Stretch="Uniform"
+                       Source="{Binding PhotoPath, IsAsync=True,Converter={StaticResource imagetobyte}}"/>-->
+                    <TextBlock Text="{Binding Heading}" FontSize="60"
+                               Foreground="#303030" FontWeight="Bold" FontFamily="../../Fonts/Roboto/#Roboto"
+                               Margin="8,60,0,0"/>
+                    <!--<TextBlock Text="{Binding Heading}" FontSize="50"
+                               Foreground="#303030" FontFamily="../Fonts/#Geometria Light"
+                               Margin="8,16,0,0"/>-->
+                </StackPanel>
+                <!--<StackPanel Margin="2.31cm,2.15cm">
+                    <TextBlock Margin="0 0 0 .6cm"
+                               FontSize="15pt"
+                               FontWeight="Light"
+                               Text="{Binding Heading}"/>
+                    <TextBlock Text="{Binding Description}"
+                               FontSize="50pt"
+                               FontWeight="Regular"/>
+                </StackPanel>-->
+            </Grid>
+        </Button>
+        <Button HorizontalAlignment="Left"
+                Click="PrevButton_OnClick" Style="{StaticResource BlankButton}" Width="80">
+            <Border>
+                <Polyline Points="30,0,0,60,30,120" Stroke="#ffffff" StrokeThickness="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-200,0,0"/>
+            </Border>
+        </Button>
+        <Button HorizontalAlignment="Right"
+                Click="NextButton_OnClick" Style="{StaticResource BlankButton}" Width="80">
+            <Border>
+                <Polyline Points="0,0,30,60,0,120" Stroke="#ffffff" StrokeThickness="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-200,0,0"/>
+            </Border>
+        </Button>
+    </Grid>
+</UserControl>

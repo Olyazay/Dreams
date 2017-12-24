@@ -1,0 +1,104 @@
+﻿<Page x:Class="DreamHouse.Pages.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+      xmlns:local="clr-namespace:DreamHouse.Pages"
+                  xmlns:convertors="clr-namespace:DreamHouse.Convertors"
+      xmlns:keyboard="clr-namespace:SimpleKeyboard;assembly=SimpleKeyboard"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="SearchPage">
+    <Page.DataContext>
+        <ViewModel:SearchViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <Storyboard x:Key="LowerOpacity">
+            <ThicknessAnimation From="0,1000,0,0" To="0,2000,0,0" Storyboard.TargetProperty="Margin" Duration="0:0:0.5"></ThicknessAnimation>
+            <DoubleAnimation From="1" To="0" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity"></DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames Duration="0:0:0.5" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"></DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HigherOpacity">
+            <ObjectAnimationUsingKeyFrames Duration="0:0:0" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"></DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ThicknessAnimation From="0,2000,0,0" To="0,1000,0,0" Storyboard.TargetProperty="Margin" Duration="0:0:0.5"></ThicknessAnimation>
+            <DoubleAnimation From="0" To="1" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity"></DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="450"/>
+                <RowDefinition Height="204"/>
+                <RowDefinition Height="2880"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="100,0,0,50">
+                <TextBlock Text="Поиск" FontFamily="../Fonts/Roboto/#Roboto" Grid.Row="0" FontWeight="Bold" Foreground="#303030" FontSize="80"/>
+                
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="100,0,100,8" VerticalAlignment="Bottom">
+                <TextBox   GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Background="Transparent" Height="130" BorderThickness="0" FontSize="100" FontWeight="Bold" FontFamily="../Fonts/Roboto/#Roboto"
+                     TextWrapping="NoWrap" Foreground="#303030" Text="{Binding SearchShop, UpdateSourceTrigger=PropertyChanged}"/>
+                <Rectangle Width="1960" Height="8" Fill="#303030"/>
+            </StackPanel>
+
+            <ListBox Name="alllist" SelectionChanged="ListBox_SelectionChanged" Height="2800"  BorderThickness="0" Background="Transparent" ItemsSource="{Binding ShopListSearched, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Margin="100,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1960"
+                 ScrollViewer.CanContentScroll="False">
+                <ListBox.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="Black"/>
+                        <GradientStop Offset="0.95" Color="Black"/>
+                        <GradientStop Offset="1" Color="Transparent"/>
+                    </LinearGradientBrush>
+                </ListBox.OpacityMask>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                            <StackPanel.Resources>
+                                <convertors:ImageConverter x:Key="imagtobyte"></convertors:ImageConverter>
+                            </StackPanel.Resources>
+                            <!--<Image Source="{Binding PhotoPathShop2,Converter={StaticResource imagtobyte}}"  Height="200" Width="200"/>-->
+                            <!--<Image Source="{Binding Path=Place, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="200" Width="200"></Image>-->
+                            <Grid Height="150" Width="150">
+                                <Grid.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding PhotoPathShop2}"></ImageBrush>
+                                </Grid.Background>
+                            </Grid>
+                            <TextBlock Margin="72,20,20,0" Text="{Binding NameShop}" FontWeight="Bold" FontSize="60" FontFamily="../Fonts/Roboto/#Roboto"
+                                       Foreground="#303030" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Grid Grid.Row="3">
+                <Button Content="назад" Height="76" Width="152" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,34,0,0" Style="{StaticResource UnderlinedButtonStyle}"
+                    DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Command="{Binding GoBackCommand}"/>
+            </Grid>
+        </Grid>
+        <keyboard:SimpleKeyboardControl Width="2160" KeyColor="Black" SpaceWidth="1000" EnterWidth="200" Name="keyboardControl" Visibility="Collapsed" Margin="0,1000,0,0" HorizontalAlignment="Center" MainBackground="#eeffffff" KeKColor="Black" KeyBackground="White" VerticalAlignment="Center" KeyWidth="130" KeyHeight="130" ShiftWidth="200" BackSpaceWidth="250"></keyboard:SimpleKeyboardControl>
+    </Grid>
+</Page>

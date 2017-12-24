@@ -1,0 +1,107 @@
+﻿<Page x:Class="DreamHouse.Pages.ShopPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+      xmlns:local="clr-namespace:DreamHouse.Pages"
+      xmlns:convertors="clr-namespace:DreamHouse.Convertors"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="ShopPage">
+    <Page.DataContext>
+        <ViewModel:OneShopViewModel/>
+    </Page.DataContext>
+    <Grid Height="3840">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="100,0">
+            <!--Фотка и "назад"-->
+            <Grid Margin="0,264,0,0">
+                <Grid.Resources>
+                    <convertors:ImageConverter x:Key="imageconvertor"></convertors:ImageConverter>
+                </Grid.Resources>
+                <Image Height="1500" VerticalAlignment="Center" Source="{Binding Shop.PhotoPathShop, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource imageconvertor}}" Width="1960" Stretch="UniformToFill"/>
+                <Button VerticalAlignment="Bottom" Content="назад" Foreground="White" Height="76" Width="152" HorizontalAlignment="Left" Margin="46,42,0,30" Style="{StaticResource UnderlinedButtonStyle}"
+                    DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Command="{Binding GoBackCommand}"
+                    Background="White">
+                    <Button.Effect>
+                        <DropShadowEffect Opacity="1" BlurRadius="4" ShadowDepth="0"></DropShadowEffect>
+                    </Button.Effect>
+                </Button>
+            </Grid>
+            <!--Название-->
+            <TextBlock Margin="0,65,0,0" Text="{Binding Shop.NameShop}" FontSize="80" FontWeight="Bold" FontFamily="../Fonts/Roboto/#Roboto Bold" Foreground="#303030"/>
+            <!--Инфа о магазине-->
+            <Grid Margin="0,150,0,0">
+                <Grid.Resources>
+                    <convertors:ZeroToMinusConverter x:Key="minusConverter"></convertors:ZeroToMinusConverter>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="124"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="266"/>
+                    <ColumnDefinition  Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Foreground="#303030" Grid.Column="0" Text="{Binding Path=Shop.FloorNumber, Converter={StaticResource minusConverter}}" FontSize="110" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold" Grid.ColumnSpan="2" Margin="52,0,297.2,0"/>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Foreground="#303030" Grid.Column="0" Text="этаж" FontSize="60" FontFamily="../Fonts/Roboto/#Roboto"/>
+
+                <!--<TextBlock  Visibility="{Binding SpotNumberVisibility}" Grid.Row="0" Foreground="#303030" Grid.Column="1" Text="{Binding Shop.SpotNumber}" FontSize="110" FontFamily="../Fonts/#Geometria Bold"/>
+            <TextBlock Visibility="{Binding SpotNumberVisibility}" VerticalAlignment="Bottom" Grid.Row="1" Foreground="#303030" Grid.Column="1" Text="место" FontSize="60" FontFamily="../Fonts/#Geometria"/>-->
+
+                <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                <TextBlock Foreground="#303030" Text="11-22" FontSize="110" FontFamily="../Fonts/#Geometria Bold"/>
+                <TextBlock Foreground="#303030" VerticalAlignment="Top" Margin="0,10,0,0" Text=":00" FontSize="60" FontFamily="../Fonts/#Geometria Bold"/>
+            </StackPanel>-->
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Foreground="#303030" Grid.Column="2" Visibility="{Binding PlaceShopVisibility}" Text="{Binding Shop.Place}" Margin="100,0,0,0" FontSize="60" FontFamily="../Fonts/Roboto/#Roboto"/>
+                <TextBlock Grid.Row="0" Foreground="#303030" Grid.Column="2" Text="Режим работы" Visibility="{Binding Path=PlaceShopVisibility}" FontSize="80" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold" Grid.ColumnSpan="2" Margin="100,20,0,0"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="100,0,0,0" Visibility="{Binding PhoneNumberVisibility, UpdateSourceTrigger=PropertyChanged}">
+                    <!--<TextBlock Foreground="#303030" Text="" FontSize="110" FontFamily="../Fonts/#Geometria Bold"/>-->
+                    <TextBlock Foreground="#303030" VerticalAlignment="Bottom" Margin="0,0,0,0" FontSize="76" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold">
+                        <TextBlock.Inlines>
+                            <TextBlock Text="+7"></TextBlock>
+                            <TextBlock Text="{Binding Shop.NumberShop}" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold"></TextBlock>
+                        </TextBlock.Inlines>
+                </TextBlock>
+                </StackPanel>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Margin="100,0,0,0" Foreground="#303030" Grid.Column="1" Text="телефон" FontSize="60" FontFamily="../Fonts/Roboto/#Roboto"
+                       Visibility="{Binding PhoneNumberVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </Grid>
+            <!--<Image Margin="0,170,0,0" Source="../Images/simplemap.png" Width="1854" Stretch="Uniform"/>-->
+
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="110,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="297*"/>
+                <ColumnDefinition Width="728*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="0,146,0,762" Text="Описание" FontSize="60" Foreground="#303030" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <!--Описание компании-->
+            <ScrollViewer Margin="0,90.5,0,40" Grid.Row="1"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly" Grid.ColumnSpan="2">
+                <TextBlock  FontSize="60" Foreground="#303030" FontFamily="../Fonts/Roboto/#Roboto" TextWrapping="Wrap" Text="{Binding Shop.ShopDescription}"/>
+            </ScrollViewer>
+            <!--<TextBlock Margin="0,50,0,0" Text="{Binding Shop.SiteShop}" Foreground="#303030"  FontSize="50" FontFamily="../Fonts/#Geometria"/>-->
+
+            <TextBlock Grid.Row="2" Name="MapTextBox" Margin="0,100,0,19.5" Text="На карте" FontSize="60" Foreground="#303030" FontFamily="../Fonts/Roboto/#Roboto" FontWeight="Bold" Grid.ColumnSpan="2"/>
+            <Button Grid.Row="3" Name="NavigationButton" Tag="{Binding Shop}" Margin="0,20.5,0,80" HorizontalAlignment="Left" Style="{StaticResource BlankButton}" 
+                Command="{Binding OpenNavigationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}">
+                <!--<TextBlock Text="Показать на карте" Foreground="#303030" FontSize="50" FontFamily="../Fonts/#Geometria"/>-->
+                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="../Images/0_floor.png" Stretch="Uniform" Margin="0,20,0,0"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

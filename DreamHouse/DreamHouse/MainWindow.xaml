@@ -1,0 +1,163 @@
+﻿<Window x:Class="DreamHouse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+        xmlns:controls="clr-namespace:DreamHouse.Controls"
+        xmlns:local="clr-namespace:DreamHouse"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1920" Width="1080"
+        WindowStyle="None" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.DataContext>
+        <ViewModel:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/MainResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <ScrollViewer Name="MainScroll" PanningMode="Both" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Viewbox Name="MainViewbox" Height="1920" Width="1080">
+            <Grid Name="MainGrid" Height="3840" Width="2160">
+                <controls:AnimatedFrame x:Name="PageContent" NavigationUIVisibility="Hidden" ForwardInStoryboard="{Binding NewInStoryboard, RelativeSource={RelativeSource Self}}"
+                                    ForwardOutStoryboard="{Binding NewOutStoryboard, RelativeSource={RelativeSource Self}}">
+                    <controls:AnimatedFrame.RefreshOutStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.RefreshOutStoryboard>
+                    <controls:AnimatedFrame.RefreshInStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="1"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.RefreshInStoryboard>
+                    <controls:AnimatedFrame.BackOutStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                         To="100"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.BackOutStoryboard>
+                    <controls:AnimatedFrame.BackInStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                         To="0"
+                                         From="-100"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="1"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.BackInStoryboard>
+                    <controls:AnimatedFrame.NewOutStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                         To="-100"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.3"
+                                         AccelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.NewOutStoryboard>
+                    <controls:AnimatedFrame.NewInStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                                         To="0"
+                                         From="100"
+                                         Duration="0:0:0.3"
+                                         DecelerationRatio="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         To="1"
+                                         Duration="0:0:0.3"
+                                         DecelerationRatio="1" />
+                        </Storyboard>
+                    </controls:AnimatedFrame.NewInStoryboard>
+                    <controls:AnimatedFrame.ContentRenderTransform>
+                        <TranslateTransform />
+                    </controls:AnimatedFrame.ContentRenderTransform>
+                    <controls:AnimatedFrame.Style>
+                        <Style TargetType="controls:AnimatedFrame">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static local:Session.CurrentSession}, Path=IsUpdating}" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <BlurEffect Radius="50"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:AnimatedFrame.Style>
+                </controls:AnimatedFrame>
+                <Grid Margin="92,100,90,0" VerticalAlignment="Top">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static local:Session.CurrentSession}, Path=IsUpdating}" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <BlurEffect Radius="50"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Button Width="374" Height="94" HorizontalAlignment="Left" Style="{StaticResource BlankButton}"
+                        Command="{Binding GoHomeCommand}" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <Image Source="Images/dreamhouse_logo.png" Width="374" Height="94" HorizontalAlignment="Left"/>
+                    </Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--<Button Height="100" Width="100" Command="{Binding TakeCategory}" CommandParameter="1" >Beaty</Button>
+                    <Button Width="100" Command="{Binding TakeCategory}" CommandParameter="2">Books</Button>-->
+                        <TextBlock Text="{Binding DateString}" VerticalAlignment="Bottom" Foreground="#303030" FontFamily="Fonts/Roboto/#Roboto Light" FontSize="40"/>
+                        <TextBlock Text="{Binding TimeString}" VerticalAlignment="Bottom" Foreground="#303030" FontFamily="Fonts/Roboto/#Roboto Bold" FontWeight="Bold" FontSize="60" Margin="40,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+                <!--<Button Content="поиcк" Style="{StaticResource SearchButtonStyle}" HorizontalAlignment="Center" Margin="0,120,0,0" Command="{Binding SearchCommand}"
+                DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>-->
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static local:Session.CurrentSession}, Path=IsUpdating}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation From="0" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <controls:UpdateWindow></controls:UpdateWindow>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </ScrollViewer>
+</Window>

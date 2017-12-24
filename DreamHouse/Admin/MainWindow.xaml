@@ -1,0 +1,470 @@
+﻿<Window x:Class="Admin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Admin"
+        xmlns:convert="clr-namespace:Admin.Converters"
+        xmlns:viewmodel="clr-namespace:Admin.ViewModel"
+        xmlns:controls="clr-namespace:Admin.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized">
+    <Window.DataContext>
+        <local:AdminViewModel></local:AdminViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <convert:RadioButtonConvertor x:Key="convertradiobutton"></convert:RadioButtonConvertor>
+    </Window.Resources>
+    <Grid>
+        <Viewbox>
+            <!--<Viewbox.Style>
+                <Style TargetType="Viewbox">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static local:Session.CurrentSession}, Path=IsUpdating}" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <BlurEffect Radius="30"></BlurEffect>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Viewbox.Style>-->
+            <Grid Height="1080" Width="1920">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding Update}" Width="500" FontSize="20" Height="50" Background="LightGreen">Обновить</Button>
+                <Grid Grid.Row="0">
+                    <Image Source="Images/dreamhouse_logo.png" HorizontalAlignment="Left" Width="300"/>
+                    <Image Source="Images/bm.png" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <TabControl Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
+                    <TabItem>
+                        <TabItem.Header>Павильон</TabItem.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="400"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Background="White" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="117*"/>
+                                    <ColumnDefinition Width="283*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Выберите этаж" FontSize="22" Margin="5,5,5,4.5" Grid.ColumnSpan="2"></TextBlock>
+                                <ListBox Grid.Row="1" Name="FloorList" ItemsSource="{Binding PavilionCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.ColumnSpan="2">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="20" Margin="5">
+                                                <TextBlock.Inlines>
+                                                    <TextBlock Text="{Binding NumberFloor}"></TextBlock>
+                                                    <TextBlock Text=" этаж"></TextBlock>
+                                                </TextBlock.Inlines>
+                                    </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical"></StackPanel>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+                                <TextBlock Grid.Row="2" Text="Выберите помещение" FontSize="22" Margin="5,4.5,5,5" Grid.ColumnSpan="2"></TextBlock>
+                                <ListBox Grid.Row="3" ScrollViewer.CanContentScroll="True" SelectedItem="{Binding Path=SelectedShop, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ElementName=FloorList, Path=SelectedItem.PavilionModels, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Border BorderThickness="0,0,0,2">
+                                                    <TextBlock FontSize="18">
+                                                        <TextBlock.Inlines>
+                                                            <TextBlock Text="Код помещения: "></TextBlock>
+                                                            <TextBlock Text="{Binding NumberPavilion}"></TextBlock>
+                                                        </TextBlock.Inlines>
+                                                </TextBlock>
+                                                </Border>
+                                                <TextBlock  Grid.Row="1" Text="{Binding ShopModels.NameShop}" FontSize="18"></TextBlock>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                            <!--<ListBox ItemsSource="{Binding Path=PavilionCollection}" Grid.Column="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=PavilionList}"></TextBlock>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+
+                            <Grid Grid.Column="1" Background="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0">
+                                    <TextBlock TextWrapping="Wrap" Text="Главная страница" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                    <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="203" Height="203">
+                                        <Border.Resources>
+                                            <convert:ImageConverter x:Key="BytesToImageConverter"></convert:ImageConverter>
+                                        </Border.Resources>
+                                        <Image Width="200" Stretch="Uniform" Height="200" Source="{Binding Path=SelectedShop.ShopModels.PhotoPathShop, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BytesToImageConverter}}"/>
+                                    </Border>
+                                    <Button Margin="0,10" Content="Выбрать файл" Width="150" Command="{Binding Path=SaveOpenedImage}" >
+                                        <Button.ToolTip>
+                                            <ToolTip >Размер изображения не должен привышать 500кб. Оптимальный размер 1960x1500</ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Фото логотипа компании" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                    <TextBox Text="{Binding Path=NameShop}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="500" HorizontalAlignment="Left"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Категория" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <ComboBox ItemsSource="{Binding Path=CategoryCollection}" SelectedItem="{Binding SelectedCategoryForShop, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="200" HorizontalAlignment="Left">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=NameCategory}"></TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" Margin="200,0,0,0">
+                                        <TextBlock Text="Телефон" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Text="{Binding Path=NumberShop}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="200" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="100,0,0,0" VerticalAlignment="Center">
+                                        <TextBlock Text="Режим работы" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Width="150" Text="{Binding Path=PlaceShop}" AcceptsReturn="True"  FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <!--<StackPanel VerticalAlignment="Center" Margin="200,0,0,0">
+                                    <TextBlock Text="Сайт " HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                    <TextBox Text="{Binding Path=SiteShop}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="400" HorizontalAlignment="Left"/>
+                                </StackPanel>-->
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Описание магазина" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                    <TextBox Text="{Binding Path=ShopDescription}" AcceptsReturn="True" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="1000" Height="180" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="30,40,0,0">
+
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="4" Grid.RowSpan="3" Grid.Column="1">
+                                    <TextBlock Text="Логотип" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                    <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="583" Height="303">
+                                        <Border.Resources>
+                                            <convert:ImageConverter x:Key="imagetobyte"></convert:ImageConverter>
+
+                                        </Border.Resources>
+                                        <Image Stretch="Uniform" Width="300" Height="300" Source="{Binding Path=SelectedShop.ShopModels.PhotoPathShop2, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource imagetobyte}}" />
+                                    </Border>
+                                    <Button Margin="0,10" Content="Выбрать файл" Command="{Binding Path=SaveOpenedImage2, UpdateSourceTrigger=PropertyChanged}"  Width="150">
+                                        <Button.ToolTip>
+                                            <ToolTip >Размер изображения не должен привышать 30кб. Оптимальный размер 150x150</ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="7"  Grid.Column="1" Orientation="Horizontal" Margin="470,130,0,0">
+                                    <Button Margin="10,10" Command="{Binding Path=SaveToBd}" Content="Сохранить" Width="120" Height="50"/>
+                                    <Button Margin="10,10" Command="{Binding DeleteShop}" Content="Удалить" Width="120" Height="50"/>
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem>
+                        <TabItem.Header>Анонсы</TabItem.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="28.25"/>
+                                <ColumnDefinition Width="27.25"/>
+                                <ColumnDefinition Width="344.75"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.ColumnSpan="3" VerticalAlignment="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ListBox SelectedItem="{Binding SelectedAnnons, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=AnnonsmentCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Heading}"></TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Button Grid.Row="1" Height="50" Command="{Binding SaveAddAnnonsMain}">Добавить анонс</Button>
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Row="0" Grid.RowSpan="6" Grid.Column="0">
+                                    <TextBlock Text="Картинка на главной" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                    <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="403" Height="403">
+                                        <Border.Resources>
+                                            <convert:ImageConverter x:Key="BytesToImageAnnonsConverter"></convert:ImageConverter>
+                                        </Border.Resources>
+                                        <Image Stretch="Uniform" Source="{Binding PhotoPathAnnons,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BytesToImageAnnonsConverter}}" Width="400" Height="400" />
+                                    </Border>
+                                    <Button Command="{Binding SaveOpenedAnnonsMain}" Margin="0,10" Content="Выбрать файл" Width="150"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Название анонcа" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                    <TextBox Text="{Binding HeadingAnnons}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="500" HorizontalAlignment="Left"/>
+                                </StackPanel>
+
+
+                                <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Описание анонса" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                    <TextBox Text="{Binding Body}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="1000" Height="180" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="3" Grid.RowSpan="3" Grid.Column="1">
+                                    <TextBlock Text="Промо-фото" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                    <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="383" Height="203">
+                                        <Border.Resources>
+                                            <convert:ImageConverter x:Key="converimmm"></convert:ImageConverter>
+                                        </Border.Resources>
+                                        <Image Stretch="Uniform" Width="380" Height="200" Source="{Binding PreviewPhotoPathAnnons,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource converimmm}}"/>
+                                    </Border>
+                                    <Button Command="{Binding SaveOpenedAnnonsMainPre}" Margin="0,10" Content="Выбрать файл" Width="150"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="7"  Grid.Column="1" Orientation="Horizontal" Margin="470,50,0,0">
+                                    <Button Command="{Binding SaveAnnonsToBd}" Margin="10,10" Content="Сохранить" Width="120" Height="50"/>
+                                    <Button Command="{Binding SaveDeleteAnnonsMain}" Margin="10,10" Content="Удалить " Width="120" Height="50"/>
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Категория"></TextBlock>
+                        </TabItem.Header>
+                        <TabItem.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="400"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <ListBox SelectedItem="{Binding SelectedCategory,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Path=CategoryCollection}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=NameCategory}" Margin="10,5"></TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                    </ListBox>
+                                    <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0">
+                                        <TextBlock Text="Изображение категории" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                        <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="203" Height="203">
+                                            <Border.Resources>
+                                                <convert:ImageConverter x:Key="categoryimageconvertor"></convert:ImageConverter>
+                                            </Border.Resources>
+                                            <Image Width="200" Source="{Binding SelectedCategory.PathCategoryPhoto, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, Converter={StaticResource categoryimageconvertor}}"  Height="200"/>
+                                        </Border>
+                                        <Button Margin="0,10" Content="Выбрать файл" Command="{Binding SaveOpenedCategoryImage}" Width="120"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                        <!--<TextBlock Text="Название категории" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Text="{Binding Path=NameCategory}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="500" HorizontalAlignment="Left"/>-->
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="7"  Grid.Column="1" Orientation="Horizontal" Margin="470,0,0,0">
+                                        <Button Margin="10,10" Content="Сохранить" Command="{Binding SaveToBdAboutCategory}" Width="120" Height="50"/>
+                                        <Button Margin="10,10" Content="Отмена" Command="{Binding DeleteCategory}" Width="120" Height="50"/>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Grid>
+                        </TabItem.Content>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Слайдер"></TextBlock>
+                        </TabItem.Header>
+                        <TabItem.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="400"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <ListBox SelectedItem="{Binding SelectedCar}" Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Path=CaruselsCollections, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Heading}" Margin="10,5"></TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical"></StackPanel>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                    </ListBox>
+                                    <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                                        <Button Margin="5" Command="{Binding SaveAddCarusel}">
+                                            <TextBlock Margin="10,5" FontSize="16" Text="Добавить элемент слайдера" ></TextBlock>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="700"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0">
+                                        <TextBlock Text="Изображение слайда" HorizontalAlignment="Center" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="0,10,0,0"/>
+                                        <Border Margin="0,10,0,0" BorderThickness="2" BorderBrush="LightGray" Width="603" Height="303">
+                                            <Border.Resources>
+                                                <convert:ImageConverter x:Key="caruselimageconvertor"></convert:ImageConverter>
+                                            </Border.Resources>
+                                            <Image Stretch="Uniform" Source="{Binding PhotoPathCar, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource caruselimageconvertor}}" Width="600" Height="300"/>
+                                        </Border>
+                                        <Button Command="{Binding SaveOpenedImageCarusel}" Margin="0,10" Content="Выбрать файл" Width="150"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                                        <TextBlock Text="Описание слайда" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Text="{Binding DescriptionCar}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,20,0" Height="180" AcceptsReturn="True" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Название слайда" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Text="{Binding HeadingCar}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="500" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="Название объета" HorizontalAlignment="Left" FontSize="20" FontFamily="Fonts/#Geometria Bold" Margin="10,10,0,0"/>
+                                        <TextBox Text="{Binding NameObjectCar}" FontSize="20" FontFamily="Fonts/#Geometria" Margin="10,20,0,0" Width="500" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="7"  Grid.Column="1" Orientation="Horizontal" Margin="470,0,0,0">
+                                        <Button Command="{Binding SaveToBdCarusel}" Margin="10,10" Content="Сохранить" Width="120" Height="50"/>
+                                        <Button Command="{Binding SaveDeleteCarusel}" Margin="10,10" Content="Удалить" Width="120" Height="50"/>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Grid>
+                        </TabItem.Content>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Viewbox>
+        <!--<Grid Grid.RowSpan="2" Name="LoadingGrid">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static local:Session.CurrentSession}, Path=IsUpdating}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <controls:UpdateWindow></controls:UpdateWindow>
+        </Grid>-->
+    </Grid>
+</Window>

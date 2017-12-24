@@ -1,0 +1,61 @@
+﻿<Page x:Class="DreamHouse.Pages.AllCompaniesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+      xmlns:local="clr-namespace:DreamHouse.Pages"
+            xmlns:convertors="clr-namespace:DreamHouse.Convertors"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="AllCompaniesPage">
+    <Page.DataContext>
+        <ViewModel:ShopsViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="450"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="100,0,0,0">
+            <TextBlock Name="CategoryName" FontFamily="../Fonts/Roboto/#Roboto" Grid.Row="0" FontWeight="Bold" Foreground="#303030" FontSize="80"/>
+            <Button Content="назад" Height="76" Width="152" HorizontalAlignment="Left" Margin="0,34,0,0" Style="{StaticResource UnderlinedButtonStyle}"
+                    DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Command="{Binding GoBackCommand}"/>
+        </StackPanel>
+
+        <ListBox BorderThickness="0" Background="Transparent" ItemsSource="{Binding Path=allshopslist, RelativeSource={RelativeSource AncestorType=Page}}" Grid.Row="1" Width="2060" Margin="100,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                 SelectionChanged="ListBox_SelectionChanged" Name="ListC" ScrollViewer.CanContentScroll="False" MaxHeight="3300">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <StackPanel.Resources>
+                            <convertors:ImageConverter x:Key="imagtobyte"></convertors:ImageConverter>
+                        </StackPanel.Resources>
+                        <Image Source="{Binding PhotoPathShop2,Converter={StaticResource imagtobyte}}" Height="200" Width="200"/>
+                        <TextBlock Margin="72,0,0,0" Text="{Binding NameShop}" FontSize="60" FontFamily="../Fonts/Roboto/#Roboto"
+                                       Foreground="#303030" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </Grid>
+</Page>

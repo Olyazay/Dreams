@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1F3949F-4764-4CDA-B365-5C899E53989D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DreamHouse</RootNamespace>
+    <AssemblyName>DreamHouse</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleKeyboard, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tour_agency2\TourAgency\Keyboard\SimpleKeyboard.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Checker.cs" />
+    <Compile Include="Command\GallerySliderOpacityConverter.cs" />
+    <Compile Include="Command\MultipleDoublesConverter.cs" />
+    <Compile Include="Controls\AnimatedFrame.cs" />
+    <Compile Include="Controls\GallerySlider.xaml.cs">
+      <DependentUpon>GallerySlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LogotipeOnMap.xaml.cs">
+      <DependentUpon>LogotipeOnMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PreloaDer.xaml.cs">
+      <DependentUpon>PreloaDer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UpdateWindow.xaml.cs">
+      <DependentUpon>UpdateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Convertors\ImageConverter.cs" />
+    <Compile Include="Convertors\MyImageConverter.cs" />
+    <Compile Include="Convertors\WrappingStream.cs" />
+    <Compile Include="Convertors\ZeroToMinusConverter.cs" />
+    <Compile Include="DataReader\AnnonsCreator.cs" />
+    <Compile Include="DataReader\CarouselItemCreator.cs" />
+    <Compile Include="DataReader\CaruselReader.cs" />
+    <Compile Include="DataReader\Counter.cs" />
+    <Compile Include="DataReader\ImageCreator.cs" />
+    <Compile Include="DataReader\PavilionCreator.cs" />
+    <Compile Include="DreamHousseBd.cs" />
+    <Compile Include="Models\AnnouncementsModel.cs" />
+    <Compile Include="Models\CarouselItemModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\FloorModel.cs" />
+    <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\InactionUser.cs" />
+    <Compile Include="Models\PavilionModel.cs" />
+    <Compile Include="Pages\AllCategoriesPage.xaml.cs">
+      <DependentUpon>AllCategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AllCompaniesPage.xaml.cs">
+      <DependentUpon>AllCompaniesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AnnouncementPage.xaml.cs">
+      <DependentUpon>AnnouncementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Category.xaml.cs">
+      <DependentUpon>Category.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FloorsPages\Floor0.xaml.cs">
+      <DependentUpon>Floor0.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FloorsPages\Floor1.xaml.cs">
+      <DependentUpon>Floor1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FloorsPages\Floor2.xaml.cs">
+      <DependentUpon>Floor2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FloorsPages\Floor3.xaml.cs">
+      <DependentUpon>Floor3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShopPage.xaml.cs">
+      <DependentUpon>ShopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FloorConverter.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\OneShopViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\ShopsViewModel.cs" />
+    <Page Include="Controls\GallerySlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LogotipeOnMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PreloaDer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UpdateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="DataReader\ShopsCreater.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AllCategoriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AllCompaniesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AnnouncementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Category.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FloorsPages\Floor0.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FloorsPages\Floor1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FloorsPages\Floor2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FloorsPages\Floor3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\MainResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\MapResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ShopModel.cs" />
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Geometria-Bold.otf" />
+    <Resource Include="Fonts\Geometria-BoldItalic.otf" />
+    <Resource Include="Fonts\Geometria-ExtraBold.otf" />
+    <Resource Include="Fonts\Geometria-ExtraBoldItalic.otf" />
+    <Resource Include="Fonts\Geometria-ExtraLight.otf" />
+    <Resource Include="Fonts\Geometria-ExtraLightItalic.otf" />
+    <Resource Include="Fonts\Geometria-Heavy.otf" />
+    <Resource Include="Fonts\Geometria-HeavyItalic.otf" />
+    <Resource Include="Fonts\Geometria-Light.otf" />
+    <Resource Include="Fonts\Geometria-LightItalic.otf" />
+    <Resource Include="Fonts\Geometria-Medium.otf" />
+    <Resource Include="Fonts\Geometria-MediumItalic.otf" />
+    <Resource Include="Fonts\Geometria-Regular.otf" />
+    <Resource Include="Fonts\Geometria-RegularItalic.otf" />
+    <Resource Include="Fonts\Geometria-Thin.otf" />
+    <Resource Include="Fonts\Geometria-ThinItalic.otf" />
+    <Resource Include="Fonts\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Light.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\floor_scheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fashion_ochki_look5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\makeup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\komod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\kids_clothes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\bag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\swimsuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\ruban.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\beauty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\trends.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\kids_chobi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Announcements\food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\no-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shop-temp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\simplemap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dreamhouse_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CarouselSamplePhotos\fashion_kids_storry_cover.jpg" />
+    <Resource Include="Images\CarouselSamplePhotos\fashion_plyazh_storry_cover.jpg" />
+    <Resource Include="Images\CarouselSamplePhotos\grebly_storry_cover.jpg" />
+    <Resource Include="Images\CarouselSamplePhotos\vino_storry_cover.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ShopPicture\Chobi.PNG" />
+    <Resource Include="Images\ShopPicture\L%27Occitane.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\0_floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\A.v.e.jpg" />
+    <Resource Include="Images\ASIA .jpg" />
+    <Resource Include="Images\BALDI.jpg" />
+    <Resource Include="Images\BARVI.jpg" />
+    <Resource Include="Images\Bianc.jpg" />
+    <Resource Include="Images\BORK.jpg" />
+    <Resource Include="Images\Buro .jpg" />
+    <Resource Include="Images\Chobi.jpg" />
+    <Resource Include="Images\Conce.jpg" />
+    <Resource Include="Images\CORRE.jpg" />
+    <Resource Include="Images\Cosmo.jpg" />
+    <Resource Include="Images\DANI .jpg" />
+    <Resource Include="Images\Delic.jpg" />
+    <Resource Include="Images\Dream.jpg" />
+    <Resource Include="Images\Eton.jpg" />
+    <Resource Include="Images\FIT-N.jpg" />
+    <Resource Include="Images\Iran .jpg" />
+    <Resource Include="Images\JNL C.jpg" />
+    <Resource Include="Images\King .jpg" />
+    <Resource Include="Images\La Ni.jpg" />
+    <Resource Include="Images\La Pr.jpg" />
+    <Resource Include="Images\Lenvi.jpg" />
+    <Resource Include="Images\L’Occ.jpg" />
+    <Resource Include="Images\MAX F.jpg" />
+    <Resource Include="Images\Meiss.jpg" />
+    <Resource Include="Images\Moser.jpg" />
+    <Resource Include="Images\RAGAZ.jpg" />
+    <Resource Include="Images\Rasch.jpg" />
+    <Resource Include="Images\RUBAN.jpg" />
+    <Resource Include="Images\SIGNO.jpg" />
+    <Resource Include="Images\Stefa.jpg" />
+    <Resource Include="Images\Techn.jpg" />
+    <Resource Include="Images\TOPST.jpg" />
+    <Resource Include="Images\Ville.jpg" />
+    <Resource Include="Images\VIP к.jpg" />
+    <Resource Include="Images\WEEKE.jpg" />
+    <Resource Include="Images\Willi.jpg" />
+    <Resource Include="Images\Yves .jpg" />
+    <Resource Include="Images\Азбук.jpg" />
+    <Resource Include="Images\Бетхо.jpg" />
+    <Resource Include="Images\Винни.jpg" />
+    <Resource Include="Images\ВИНОТ.jpg" />
+    <Resource Include="Images\Зона .jpg" />
+    <Resource Include="Images\ИЛЬ Д.jpg" />
+    <Resource Include="Images\Инлав.jpg" />
+    <Resource Include="Images\Книжн.jpg" />
+    <Resource Include="Images\Милле.jpg" />
+    <Resource Include="Images\МУЛЬТ.jpg" />
+    <Resource Include="Images\СТРИЖ.jpg" />
+    <Resource Include="Images\Техно.jpg" />
+    <Resource Include="Images\Углеч.jpg" />
+    <Resource Include="Images\ФАНФА.jpg" />
+    <Resource Include="Images\Цифро.jpg" />
+    <Resource Include="Images\Чай К.jpg" />
+    <Resource Include="Images\Экран.jpg" />
+    <Resource Include="Images\Экспр.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\круг.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\toilet\001-upstairs-sign.png" />
+    <Resource Include="Images\toilet\002-elevator.png" />
+    <Resource Include="Images\toilet\003-login.png" />
+    <Resource Include="Images\toilet\004-wc-sign.png" />
+    <Resource Include="Images\toilet\005-next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\main_center_gift.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\fashion_news_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\krasota_news.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\fashion_chobi_look1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\31.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\dom_square_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\main2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Categories\placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\enter-left.png" />
+    <Resource Include="Images\Icons\scroll-vertical-arrows.png" />
+    <Resource Include="Images\Icons\stairs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\wc-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\001-doors-opened-entrance.png" />
+    <Resource Include="Images\Icons\002-double-door-opened.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

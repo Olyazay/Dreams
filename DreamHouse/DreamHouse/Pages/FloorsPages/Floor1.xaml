@@ -1,0 +1,344 @@
+﻿<Page x:Class="DreamHouse.Pages.FloorsPages.Floor1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DreamHouse.Pages.FloorsPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="2964" d:DesignWidth="1560"
+      Title="Floor1">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/MainResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource RobotoFloor}"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="521*"/>
+            <RowDefinition Height="220*"/>
+        </Grid.RowDefinitions>
+        <Button Name="shopname" FontSize="80" VerticalAlignment="Top" Margin="0,400,0,0" HorizontalAlignment="Center" Click="shopname_Click" FontFamily="../../Fonts/Roboto/#Roboto" Style="{StaticResource MapShopButtonStyle}"></Button>
+
+        <Canvas Name="canvasmap" Width="400" Height="250" Margin="430,1357,730,477" RenderTransformOrigin="0.5,0.5">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"></RotateTransform>
+                    <ScaleTransform ScaleX="5" ScaleY="5"></ScaleTransform>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid Name="PathGrid" RenderTransformOrigin="0.5,0.5" Canvas.Left="-27" Canvas.Top="2" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </Grid.RenderTransform>
+
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n111" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M273.5,179L265.3,118 241.8,118 241.8,179z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n118" Fill="#CCCCCB" Stroke="White" Margin="83.8,105.09,234.164,12.053" Data="M0.99531722,0.79856609 L33.58498,0.50000006 33.089662,99.011146 0.5,99.309712 z"/>
+                <Path  MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n113" Fill="#CCCCCB" Stroke="White" Data="M46.900006,99.446102 L47.300006,74.599998 33.900006,74.599998 33.900006,0.49999847 0.9000061,0.49999847 0.5000061,99.446102 z" Margin="182.9,104.4,135.65,12.6" Stretch="Fill"/>
+                <Path Data="M241.8,188.9" Fill="#FF000000" />
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,0,0,0" />
+                    </Path.Data>
+                </Path>
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,0,0,0" />
+                    </Path.Data>
+                </Path>
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="84,0,0,0" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n119" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M50.8,136.8L50.8,113.6 84,113.6 84,143.9 84,204.3 59.1,204.3 53.8,186.3 59.5,184.1 58.3,180 62.3,179.1 50.8,145.1z" />
+                    </Path.Data>
+                </Path>
+                <Path Data="M169.5,70.1" Fill="#FF000000" />
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n104" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M177.3,57.3L209.2,48.9 196.2,3 162.2,3z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n106" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M246.8,3L251.5,37.1 219.7,46 207.9,3z" />
+                    </Path.Data>
+                </Path>
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M259.5,98.7L251.5,45.4 167.2,68.4 171.7,98.7z" />
+                    </Path.Data>
+                </Path>
+                <Path Data="M150.6,96.2" Fill="#FF000000" />
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n103" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M145.2,65.6L128,3 162.2,3 177.3,57.3z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n102" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M145.2,65.6L134.4,26.4 102.5,34.3 113.5,73.6z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n121" Data="M18.7,116.3L16.6,106.5 42.1,106.5C42.1,106.5,40.5,91.3,38.2,87.1L5.6,96 8.6,116.2 18.7,116.3 18.7,116.3z" Fill="#CCCCCB" />
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n121" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M0,33.1L16.9,92.7 50.8,83.7 33.7,24.5z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n101" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M113.5,73.6L102.5,34.3 134.4,26.4 131.4,15.4 128,3 70.2,3 91.3,79.2z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"   Tag="n100" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M89.8,73.6L92.2,82.1 73,87.2 71,78.2z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n105" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M280.5,24.5L277.2,3 315.3,3 318.2,30.1 279.4,37.6 277.8,25.2z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n1MF" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M279.4,37.6L281,48.5 304.5,42.3 307.5,53.8 312.5,51.4 350.5,51.4 350.5,30.1 319,38.3 318.2,30.1z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n108" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M281,48.5L265.9,52.1 270.3,85 317.2,79.2 319.8,98.7 350.5,94.6 350.5,51.4 312.5,51.4 307.5,53.8 304.5,42.3z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n109" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M270.3,85L273.5,104.9 319.8,98.7 317.2,79.2z" />
+                    </Path.Data>
+                </Path>
+                <Path>
+                    <Path.Data>
+                        <PathGeometry Figures="M273.5,104.9L279,143.6 350.5,143.6 350.5,94.3z" />
+                    </Path.Data>
+                </Path>
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M351.5,26.2L321.7,34 318.2,1.5 351.5,1.5z" />
+                    </Path.Data>
+                </Path>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n120" Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <PathGeometry Figures="M50.8,145.1L35.6,145.1 29.2,123.3 29.2,117.7 30.8,117.7 30.9,115.5 49.4,115.5 49.4,117.8 50.8,117.7z" />
+                    </Path.Data>
+                </Path>
+                <Path Fill="#CCCCCB" Stroke="White">
+                    <Path.Data>
+                        <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,0,0,0" />
+                    </Path.Data>
+                </Path>
+                <Path Data="M241.8,176.5" Fill="#FF000000" />
+
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n116" Fill="#CCCCCB" Stroke="White" Margin="116.27,104.876,200.472,12.464" Data="M1.0251238,0.79861442 L34.805016,0.50000002 34.512642,99.112641 0.50000001,99.101719 z"/>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n115" Fill="#CCCCCB" Stroke="White" Margin="150.776,104.459,168.132,12.478" Data="M0.76237314,0.7614161 L32.638859,0.49999997 32.549036,99.426324 0.50000001,99.515014 z"/>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n112" Fill="#CCCCCB" Stroke="White" Margin="216.85,117.532,135.65,37.298" Data="M0.50000001,0.66106931 L26.405405,0.5 26.620268,61.629198 0.54231212,61.617541 z" Stretch="Fill"/>
+                <Path MouseLeave="Path_MouseLeave"  MouseEnter="Path_MouseEnter"  Tag="n110" Fill="#CCCCCB" Stroke="White" Margin="272.956,93.989,0.929,74.1" Data="M78.075868,47.910649 L77.591605,0.50000001 0.5,10.899816 6.7050013,48.399816 z"/>
+            </Grid>
+            <Grid Canvas.ZIndex="1000"  Canvas.Left="103" Canvas.Top="104">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.4" BlurRadius="2" ShadowDepth="1" Direction="30"></DropShadowEffect>
+                </Grid.Effect>
+                <Canvas Margin="11,27,-11,-27">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"></RotateTransform>
+                            <ScaleTransform ScaleX="4.5" ScaleY="4.5"></ScaleTransform>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Image Source="../../Images/Categories/placeholder.png" Width="3"/>
+
+                </Canvas>
+                <Ellipse Visibility="Hidden" Width="16" Height="16" Fill="#FF3780FF"></Ellipse>
+                <Ellipse Visibility="Hidden" Width="10" Height="10" Fill="White"></Ellipse>
+                <!--<TextBlock Text="Я" FontFamily="../../Fonts/#Geometria Bold" FontSize="9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>-->
+            </Grid>
+            <Ellipse  Visibility="Collapsed"   Tag="1,2" Name="start" Fill="Red" Height="5" Width="5" Canvas.Left="108" Canvas.Top="110"></Ellipse>
+            <Ellipse  Visibility="Collapsed"   Tag="2,1,6,3" Fill="Red" Height="2" Width="2" Canvas.Left="108" Canvas.Top="107"></Ellipse>
+
+            <Ellipse  Visibility="Collapsed"   Tag="4,71" Fill="Red" Height="5" Width="5" Canvas.Left="96" Canvas.Top="99"></Ellipse>
+            <Ellipse  Visibility="Collapsed"   Tag="7,70" Fill="Red" Height="5" Width="5" Canvas.Left="119" Canvas.Top="99"/>
+            <Ellipse  Visibility="Collapsed"   Tag="5,52" Fill="Red" Height="5" Width="5" Canvas.Left="74" Canvas.Top="107"/>
+            <Ellipse  Visibility="Collapsed"   Tag="10,53" Fill="Red" Height="5" Width="5" Canvas.Left="78" Canvas.Top="126"/>
+            <Ellipse  Visibility="Collapsed"   Tag="19,54" Fill="Red" Height="5" Width="5" Canvas.Left="81" Canvas.Top="152"/>
+            <Ellipse  Visibility="Collapsed"   Tag="21,57" Fill="Red" Height="5" Width="5" Canvas.Left="122" Canvas.Top="173"/>
+            <Ellipse  Visibility="Collapsed"   Tag="48,55" Fill="Red" Height="6" Width="5" Canvas.Left="69" Canvas.Top="173"/>
+            <Ellipse  Visibility="Collapsed"   Tag="24,58" Fill="Red" Height="5" Width="5" Canvas.Left="163" Canvas.Top="162"/>
+            <Ellipse  Visibility="Collapsed"   Tag="26,59" Fill="Red" Height="5" Width="5" Canvas.Left="196" Canvas.Top="153"/>
+            <Ellipse  Visibility="Collapsed"   Tag="33,60" Fill="Red" Height="5" Width="5" Canvas.Left="219" Canvas.Top="148"/>
+            <Ellipse  Visibility="Collapsed"   Tag="35,61" Fill="Red" Height="5" Width="5" Canvas.Left="247" Canvas.Top="140"/>
+            <Ellipse  Visibility="Collapsed"   Tag="27,62" Fill="Red" Height="5" Width="5" Canvas.Left="267" Canvas.Top="132"/>
+            <Ellipse  Visibility="Collapsed"   Tag="43,63" Fill="Red" Height="5" Width="5" Canvas.Left="307" Canvas.Top="115"/>
+            <Ellipse  Visibility="Collapsed"   Tag="46,64" Fill="Red" Height="5" Width="5" Canvas.Left="309" Canvas.Top="101"/>
+            <Ellipse  Visibility="Collapsed"   Tag="41,65" Fill="Red" Height="5" Width="5" Canvas.Left="275" Canvas.Top="103"/>
+            <Ellipse  Visibility="Collapsed"   Tag="39,66" Fill="Red" Height="5" Width="5" Canvas.Left="258" Canvas.Top="112"/>
+            <Ellipse  Visibility="Collapsed"   Tag="37,67" Fill="Red" Height="5" Width="5" Canvas.Left="212" Canvas.Top="112"/>
+            <Ellipse  Visibility="Collapsed"   Tag="15,68" Fill="Red" Height="5" Width="5" Canvas.Left="188" Canvas.Top="112"/>
+            <Ellipse  Visibility="Collapsed"   Tag="14,69" Fill="Red" Height="5" Width="5" Canvas.Left="150" Canvas.Top="112"/>
+            <Ellipse  Visibility="Collapsed"   Tag="3,2,4,8" Fill="Red" Height="2" Width="2" Canvas.Left="97" Canvas.Top="107"/>
+            <Ellipse  Visibility="Collapsed"   Tag="8,5,9,3" Fill="Red" Height="2" Width="2" Canvas.Left="86" Canvas.Top="107"/>
+            <Ellipse  Visibility="Collapsed"   Tag="9,8,10,18" Fill="Red" Height="2" Width="2" Canvas.Left="86" Canvas.Top="126"/>
+            <Ellipse  Visibility="Collapsed"   Tag="18,19,9,20,49" Fill="Red" Height="2" Width="2" Canvas.Left="89" Canvas.Top="152"/>
+            <Ellipse  Visibility="Collapsed"   Tag="49,18,48,20" Fill="Red" Height="2" Width="2" Canvas.Left="91" Canvas.Top="171"/>
+            <Ellipse  Visibility="Collapsed"   Tag="20,18,22,49,50,51" Fill="Red" Height="2" Width="2" Canvas.Left="93" Canvas.Top="178"/>
+            <Ellipse  Visibility="Collapsed"   Tag="22,20,23,21" Fill="Red" Height="2" Width="2" Canvas.Left="122" Canvas.Top="171"/>
+            <Ellipse  Visibility="Collapsed"   Tag="23,24,25" Fill="Red" Height="2" Width="2" Canvas.Left="163" Canvas.Top="160"/>
+            <Ellipse  Visibility="Collapsed"   Tag="25,26,23,29,27, 32" Fill="Red" Height="2" Width="2" Canvas.Left="196" Canvas.Top="151"/>
+            <Ellipse  Visibility="Collapsed"   Tag="47,13,36,29,15" Fill="Red" Height="2" Width="2" Canvas.Left="188" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="29,13,25" Fill="Red" Height="2" Width="2" Canvas.Left="191" Canvas.Top="133"/>
+            <Ellipse  Visibility="Collapsed"   Tag="6,2,7,11" Fill="Red" Height="2" Width="2" Canvas.Left="119" Canvas.Top="107"/>
+            <Ellipse  Visibility="Collapsed"   Tag="11,6,12" Fill="Red" Height="2" Width="2" Canvas.Left="123" Canvas.Top="107"/>
+            <Ellipse  Visibility="Collapsed"   Tag="12,11,13" Fill="Red" Height="2" Width="2" Canvas.Left="123" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="13,14,12,47" Fill="Red" Height="2" Width="2" Canvas.Left="150" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="32,33,30,34" Fill="Red" Height="2" Width="2" Canvas.Left="219" Canvas.Top="145"/>
+            <Ellipse  Visibility="Collapsed"   Tag="36,37,16,47" Fill="Red" Height="2" Width="2" Canvas.Left="212" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="38,39,40,36,17" Fill="Red" Height="2" Width="2" Canvas.Left="258" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="34,35,32,28" Fill="Red" Height="2" Width="2" Canvas.Left="247" Canvas.Top="138"/>
+            <Ellipse  Visibility="Collapsed"   Tag="28,34,43,27,31" Fill="Red" Height="2" Width="2" Canvas.Left="267" Canvas.Top="130"/>
+            <Ellipse  Visibility="Collapsed"   Tag="40,41,38,42" Fill="Red" Height="2" Width="2" Canvas.Left="275" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="42,40,43,44,28,30" Fill="Red" Height="2" Width="2" Canvas.Left="302" Canvas.Top="116"/>
+            <Ellipse  Visibility="Collapsed"   Tag="44,42,45" Fill="Red" Height="2" Width="2" Canvas.Left="302" Canvas.Top="108"/>
+            <Ellipse  Visibility="Collapsed"   Tag="45,46,44" Fill="Red" Height="2" Width="2" Canvas.Left="309" Canvas.Top="108"/>
+            <Ellipse  Visibility="Collapsed"   Tag="30,28,42,31" Fill="Red" Height="2" Width="2" Canvas.Left="302" Canvas.Top="130"/>
+            <Ellipse  Visibility="Collapsed"   Tag="31,28,42,30" Fill="Red" Height="2" Width="2" Canvas.Left="285" Canvas.Top="130"/>
+            <Ellipse  Visibility="Collapsed"   Tag="16,36,38,17" Fill="Red" Height="2" Width="2" Canvas.Left="231" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="17,16,38" Fill="Red" Height="2" Width="2" Canvas.Left="242" Canvas.Top="117"/>
+            <Ellipse  Visibility="Collapsed"   Tag="50,56" Fill="Red" Height="6" Width="5" Canvas.Left="70" Canvas.Top="185"/>
+            <Ellipse  Visibility="Collapsed"   Tag="51,50,22,49,20" Fill="Red" Height="2" Width="2" Canvas.Left="94" Canvas.Top="183"/>
+            <Ellipse  Visibility="Collapsed"   Tag="52" x:Name="n110" Fill="Green" Height="5" Width="5" Canvas.Left="36" Canvas.Top="95"/>
+            <Ellipse  Visibility="Collapsed"   Tag="53" x:Name="n109" Fill="Green" Height="5" Width="5" Canvas.Left="51" Canvas.Top="124"/>
+            <Ellipse  Visibility="Collapsed"   Tag="54" x:Name="n108" Fill="Green" Height="5" Width="5" Canvas.Left="57" Canvas.Top="151"/>
+            <Ellipse  Visibility="Collapsed"   Tag="55" x:Name="n1MF" Fill="Green" Height="5" Width="5" Canvas.Left="17" Canvas.Top="173"/>
+            <Ellipse  Visibility="Collapsed"   Tag="56" x:Name="n105" Fill="Green" Height="5" Width="5" Canvas.Left="51" Canvas.Top="200"/>
+            <Ellipse  Visibility="Collapsed"   Tag="57" x:Name="n106" Fill="Green" Height="5" Width="5" Canvas.Left="119" Canvas.Top="199"/>
+            <Ellipse  Visibility="Collapsed"   Tag="58" x:Name="n104" Fill="Green" Height="5" Width="5" Canvas.Left="163" Canvas.Top="194"/>
+            <Ellipse  Visibility="Collapsed"   Tag="59" x:Name="n103" Fill="Green" Height="5" Width="5" Canvas.Left="196" Canvas.Top="187"/>
+            <Ellipse  Visibility="Collapsed"   Tag="60" x:Name="n102" Fill="Green" Height="5" Width="5" Canvas.Left="225" Canvas.Top="170"/>
+            <Ellipse  Visibility="Collapsed"   Tag="61" x:Name="n101" Fill="Green" Height="5" Width="5" Canvas.Left="255" Canvas.Top="199"/>
+            <Ellipse  Visibility="Collapsed"   Tag="62" x:Name="n100" Fill="Green" Height="5" Width="5" Canvas.Left="271" Canvas.Top="141"/>
+            <Ellipse  Visibility="Collapsed"   Tag="63" x:Name="n121" Fill="Green" Height="5" Width="5" Canvas.Left="322" Canvas.Top="119"/>
+            <Ellipse  Visibility="Collapsed"   Tag="64" x:Name="n120" Fill="Green" Height="5" Width="5" Canvas.Left="308" Canvas.Top="88"/>
+            <Ellipse  Visibility="Collapsed"   Tag="65" x:Name="n119" Fill="Green" Height="5" Width="5" Canvas.Left="282" Canvas.Top="86"/>
+            <Ellipse  Visibility="Collapsed"   Tag="66" x:Name="n118" Fill="Green" Height="5" Width="5" Canvas.Left="247" Canvas.Top="83"/>
+            <Ellipse  Visibility="Collapsed"   Tag="67" x:Name="n116" Fill="Green" Height="5" Width="5" Canvas.Left="212" Canvas.Top="83"/>
+            <Ellipse  Visibility="Collapsed"   Tag="68" x:Name="n115" Fill="Green" Height="5" Width="5" Canvas.Left="179" Canvas.Top="83"/>
+            <Ellipse  Visibility="Collapsed"   Tag="69" x:Name="n113" Fill="Green" Height="5" Width="5" Canvas.Left="149" Canvas.Top="83"/>
+            <Ellipse  Visibility="Collapsed"   Tag="70" x:Name="n112" Fill="Green" Height="5" Width="5" Canvas.Left="120" Canvas.Top="70"/>
+            <Ellipse  Visibility="Collapsed"   Tag="71" Name="n111" Fill="Green" Height="5" Width="5" Canvas.Left="93" Canvas.Top="70"/>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="81" Canvas.Top="196">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"/>
+                </Grid.RenderTransform>
+                <Image Source="/DreamHouse;component/Images/Icons/002-double-door-opened.png" Width="15" Height="15"/>
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="53" Canvas.Top="54" MouseLeave="Path_MouseLeave" MouseEnter="Path_MouseEnter"  Tag="n0tualet">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </Grid.RenderTransform>
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="113" Canvas.Top="114">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </Grid.RenderTransform>
+                <Image Source="../../Images/Icons/scroll-vertical-arrows.png" Width="15" Height="15" Margin="0,0,-0.6,-0.6"></Image>
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="285" Canvas.Top="149">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"/>
+                </Grid.RenderTransform>
+                <Image Source="/DreamHouse;component/Images/Icons/001-doors-opened-entrance.png" Width="15" Height="15"/>
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="324" Canvas.Top="101">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"/>
+                </Grid.RenderTransform>
+                <Image Source="/DreamHouse;component/Images/Icons/scroll-vertical-arrows.png" Width="12" Height="12" Margin="0,0,-0.4,-0.4" />
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="188" Canvas.Top="131">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"/>
+                </Grid.RenderTransform>
+                <Image Source="/DreamHouse;component/Images/Icons/stairs.png" Width="13" Height="13"/>
+            </Grid>
+            <Grid RenderTransformOrigin="0.5,0.5" Canvas.Left="336" Canvas.Top="101">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </Grid.RenderTransform>
+                <Image Source="../../Images/Icons/stairs.png" Width="12" Height="12" Margin="0,0,-0.8,-0.8"/>
+            </Grid>
+
+        </Canvas>
+        <StackPanel Grid.RowSpan="2" Width="1300" Height="Auto" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.Effect>
+                        <DropShadowEffect Opacity="0.4" BlurRadius="2" ShadowDepth="1" Direction="300"></DropShadowEffect>
+                    </Grid.Effect>
+                    <Image Source="../../Images/Categories/placeholder.png" Width="100"></Image>
+                    <!--<TextBlock Text="Я" FontFamily="../../Fonts/#Geometria Bold" FontSize="9" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>-->
+                </Grid>
+                <TextBlock Grid.Column="1" Text=" - ваше местоположение" FontFamily="{StaticResource RobotoFloor}" FontSize="96" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="300,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="../../Images/Icons/scroll-vertical-arrows.png" Width="70"></Image>
+                <TextBlock Grid.Column="1" Text=" - лифт" FontFamily="{StaticResource RobotoFloor}" FontSize="50" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="300,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="../../Images/Icons/stairs.png" Width="70"></Image>
+                <TextBlock Grid.Column="1" Text=" - лестница" FontFamily="{StaticResource RobotoFloor}" FontSize="50" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="300,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="../../Images/Icons/001-doors-opened-entrance.png" Width="70"></Image>
+                <TextBlock Grid.Column="1" Text=" - вход" FontFamily="{StaticResource RobotoFloor}" FontSize="50" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Margin="300,20,0,200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="../../Images/Icons/wc-sign.png" Width="70"></Image>
+                <TextBlock Grid.Column="1" Text=" - туалет" FontFamily="{StaticResource MainFontBoldForFloor}" FontSize="50" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+        </StackPanel>
+    </Grid>
+
+</Page>

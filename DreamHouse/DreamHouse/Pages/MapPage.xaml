@@ -1,0 +1,68 @@
+﻿<Page x:Class="DreamHouse.Pages.MapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ViewModel="clr-namespace:DreamHouse.ViewModels"
+      xmlns:Converter="clr-namespace:DreamHouse.Resources"
+      xmlns:local="clr-namespace:DreamHouse.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="MapPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MapResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.DataContext>
+        <ViewModel:MapViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="679"/>
+            <RowDefinition Height="3164"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" RenderTransformOrigin="0,1" VerticalAlignment="Center" Margin="100,0,0,0" HorizontalAlignment="Left">
+            <StackPanel.RenderTransform>
+                <RotateTransform Angle="0"></RotateTransform>
+            </StackPanel.RenderTransform>
+            <TextBlock Text="Карта" FontFamily="../Fonts/Roboto/#Roboto" Grid.Row="0" FontWeight="Bold" Foreground="#303030" FontSize="80"/>
+
+
+        </StackPanel>
+
+        <Frame NavigationUIVisibility="Hidden" RenderTransformOrigin="0.2,0.4" Name="MapFrame" Source="{Binding FrameSource}" Grid.Row="1" Margin="400,0,100,100">
+            <Frame.RenderTransform>
+                <RotateTransform Angle="0"></RotateTransform>
+            </Frame.RenderTransform>
+        </Frame>
+        
+
+        <StackPanel Grid.Row="1" RenderTransformOrigin="0,1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,200,0,0">
+            <StackPanel.Resources>
+                <Converter:FloorConverter x:Key="FloorConverter"/>
+            </StackPanel.Resources>
+            <StackPanel.RenderTransform>
+                <RotateTransform Angle="0"></RotateTransform>
+            </StackPanel.RenderTransform>
+            <RadioButton Name="R1" GroupName="Floors" Content="-1" Click="R1_Click"
+                         IsChecked="{Binding SelectedFloor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource FloorConverter}, ConverterParameter=-1}" 
+                         Style="{DynamicResource RadioButtonStyle1}"/>
+            <RadioButton Name="R2" GroupName="Floors" Content="1" Click="R2_Click"
+                                  IsChecked="{Binding SelectedFloor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource FloorConverter}, ConverterParameter=1}" 
+                         Style="{DynamicResource RadioButtonStyle1}"/>
+            <RadioButton Name="R3" GroupName="Floors" Content="2" Click="R3_Click"
+                                  IsChecked="{Binding SelectedFloor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource FloorConverter}, ConverterParameter=2}" 
+                         Style="{DynamicResource RadioButtonStyle1}"/>
+            <RadioButton Name="R4" GroupName="Floors" Content="3" Click="R4_Click"
+                                  IsChecked="{Binding SelectedFloor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource FloorConverter}, ConverterParameter=3}" 
+                         Style="{DynamicResource RadioButtonStyle1}"/>
+        </StackPanel>
+        <Button Content="назад" Height="76" Width="152" HorizontalAlignment="Left"  Style="{StaticResource BackButtonStyle}"
+                    DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}" Command="{Binding BackCommand}" Grid.Row="1" Margin="157,2411.8,0,676.2"/>
+        <!--<Image Grid.Row="1" Source="../Images/floor_scheme.png" VerticalAlignment="Center" Width="464" Height="2110" Margin="150,0,0,80"/>-->
+    </Grid>
+</Page>
