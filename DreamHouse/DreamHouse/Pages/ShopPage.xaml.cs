@@ -52,10 +52,10 @@ namespace DreamHouse.Pages
         //    NavigationService?.Navigate(new Floor0(viewModel.Shop));      
         //}
 
-        private ICommand _OpenNavigationCommand;
-        public ICommand OpenNavigationCommand => _OpenNavigationCommand ?? (_OpenNavigationCommand = new Command.Command(delegate
-        {
-            (App.Current.MainWindow as MainWindow).PageContent.Content = new MapPage(NavigationButton.Tag as ShopModel);
-        }));
+        //private ICommand _OpenNavigationCommand;
+        //public ICommand OpenNavigationCommand => _OpenNavigationCommand ?? (_OpenNavigationCommand = new Command.Command(delegate
+        //{
+        //    (App.Current.MainWindow as MainWindow).PageContent.Content = new MapPage(NavigationButton.Tag as ShopModel);
+        //}));
     }
 }
